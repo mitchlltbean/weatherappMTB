@@ -12,22 +12,51 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4">
+            <div class="col-3 d-flex align-items-stretch">
                 <form roles="form">
                     <div class="form-group">
-                        <label for="search">Serach City</label>
+                        <label for="search" class="form-group">Serach City:</label>
+                        <input type="text" class="form-group">
                         <button type="submit" class="btn btn-default">Submit</button>
                     </div>
                 </form>
             </div>  
-            <div class="col-8">
-                <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">city</h5>
-                      <p class="card-temperature">temp</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="col-9 d-flex align-items-stretch">
+                <div class="contianer-fluid">
+                    <div class="row">
+                        <div class="card" style="width: 75rem;">
+                            <div class="card-main">
+                                <h5 class="card-title">city(date)(img tag for icon)<img src></h5>
+                     
+                                <p class="card-temperature">temp</p>
+                     
+                                <p class="card-humid">humid</p>
+                    
+                                <p class="card-wind">wind</p>
+                     
+                                <p class="card-uv">unv index</p> 
+                            </div>
+                        </div>
+                            
                     </div>
-                  </div>
+
+                    <div class="row">
+                        <h5 class="fiveday">5-day Forecast</h5>
+                    </div>
+                    <div class="row">    
+                        <card style="width: 10rem;" class="cardone">
+                        
+                        <p class="card-temperature">date</p>
+                     
+                        <p class="card-humid">img of predicted weather</p>
+                
+                        <p class="card-wind">wind</p>
+                 
+                        <p class="card-uv">unv index</p> 
+                        </card>
+                        
+                    </div>  
+                </div>
             </div>
         </div>
     </div>
