@@ -4,37 +4,47 @@ var authKey = "6398149920a7a183b9bab744a5b278b5";
 
 var queryTerm = ""
 
-
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey //+ "&q=Portland";
 
 //TODO: create functions
 
 function runQuery(numResults, queryURL){
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle";
+  
 
   $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(cityData){
+    }).done(function(cityData){
       //TODO: get first search data from api 
+     
       console.log(cityData);
       
       
      
     
     })
-  }
+}
+  
+
+
+
+
 //TODO:create click event for search
 
-$("#searchBtn").on("click", function(){
+$("#searchBtn").on("click", function(event) {
+  event.preventDefault()
 
 
+    queryTerm = $("#searchplz").val();
+    
+    console.log(queryTerm);
 
-  //  userSearch = $("#search").val().trim();
-   // console.log(userSearch)
+    var newURL = queryURL + "&q=" + queryTerm;
 
-    runQuery(1, "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle");
+    console.log(newURL)
+  //  runQuery(1, "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle";
 
 
-    return false;
+  //  return false;
 
 })
