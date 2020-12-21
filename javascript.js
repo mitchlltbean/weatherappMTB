@@ -1,32 +1,40 @@
 
+//TODO: create var for api key and search
+var authKey = "6398149920a7a183b9bab744a5b278b5";
+
+var queryTerm = ""
 
 
 
+//TODO: create functions
 
+function runQuery(numResults, queryURL){
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle";
 
-
-
-//function searchCity(){
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=6398149920a7a183b9bab744a5b278b5";
-
-    $.ajax({
+  $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function(cityData){
+      //TODO: get first search data from api 
+      console.log(cityData);
       
-      console.log(response)
       
-      // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
-      // var tdtitle = $("").text(response.Title)
-      // var tdyear = $("").text(response.Year)
-      // var tdactors = $("").text(response.Actors)
-      // Append the td elements to the new table row
-      // tr.append(tdtitle, tdyear, tdactors)
-      // Append the table row to the tbody element
-      // $("").append()
-      
-    });
-//  }
+     
+    
+    })
+  }
+//TODO:create click event for search
 
-//  searchCity("Titanic")
-//  searchCity("Jaws")
+$("#searchBtn").on("click", function(){
+
+
+
+  //  userSearch = $("#search").val().trim();
+   // console.log(userSearch)
+
+    runQuery(1, "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle");
+
+
+    return false;
+
+})
