@@ -10,33 +10,40 @@ var queryURL =
   queryTerm;
 //TODO: create functions
 var data = "";
+//TODO: get first search data from api rolling 2 call to one api
 
 function runQuery(newURL) {
   $.ajax({
     url: newURL,
     method: "GET",
   }).then(function (data) {
-    //TODO: get first search data from api
-
     console.log(data);
-
+    //TODO: take first api call get and destruct object for appending most data
     console.log(data.name);
     console.log(data.coord);
     coord = data.coord;
+    sunAjaxtwo(coord);
   });
-  // $.ajax({
-  //   url: newURL,
-  //   method: "GET",
-  // }).then(function (data) {
-  //   //TODO: get first search data from api
+  function sunAjaxtwo(coord) {
+    console.log(coord);
+    $.ajax({
+      url:
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+        coord.lat +
+        "&lon=" +
+        coord.lon +
+        "&exclude=minutely,hourly&appid=6398149920a7a183b9bab744a5b278b5",
+      method: "GET",
+    }).then(function (finalData) {
+      //TODO: get second sata information from one call api and use daily forecast and date for 5 day
 
-  //   console.log(data);
+      console.log(finalData);
 
-  //   console.log(data.name);
-  //   city = data.console.log(data.weather[0].description);
-  // });
+      // console.log(finalData.name);
+      // console.log(finalData.weather[0].description);
+    });
+  }
 }
-
 //TODO:create click event for search
 
 $("#searchBtn").on("click", function (event) {
