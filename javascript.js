@@ -1,50 +1,54 @@
-
 //TODO: create var for api key and search
 var authKey = "6398149920a7a183b9bab744a5b278b5";
 
-var queryTerm = ""
+var queryTerm = "";
 
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey //+ "&q=Portland";
-
+// var queryURL = newURL;
+var queryURL =
+  "https://api.openweathermap.org/data/2.5/weather?appid=" +
+  authKey +
+  queryTerm;
 //TODO: create functions
+var data = "";
 
-function runQuery(numResults, queryURL){
-  
-
+function runQuery(newURL) {
   $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(cityData){
-      //TODO: get first search data from api 
-     
-      console.log(cityData);
-      
-      
-     
-    
-    })
+    url: newURL,
+    method: "GET",
+  }).then(function (data) {
+    //TODO: get first search data from api
+
+    console.log(data);
+
+    console.log(data.name);
+    console.log(data.coord);
+    coord = data.coord;
+  });
+  // $.ajax({
+  //   url: newURL,
+  //   method: "GET",
+  // }).then(function (data) {
+  //   //TODO: get first search data from api
+
+  //   console.log(data);
+
+  //   console.log(data.name);
+  //   city = data.console.log(data.weather[0].description);
+  // });
 }
-  
-
-
-
 
 //TODO:create click event for search
 
-$("#searchBtn").on("click", function(event) {
-  event.preventDefault()
+$("#searchBtn").on("click", function (event) {
+  event.preventDefault();
 
+  queryTerm = $("#searchplz").val();
 
-    queryTerm = $("#searchplz").val();
-    
-    console.log(queryTerm);
+  console.log(queryTerm);
 
-    var newURL = queryURL + "&q=" + queryTerm;
+  var newURL = queryURL + "&q=" + queryTerm;
 
-    console.log(newURL)
-  //  runQuery(1, "https://api.openweathermap.org/data/2.5/weather?appid=" + authKey + "&q=Seattle";
+  console.log(newURL);
 
-
-  //  return false;
-
-})
+  runQuery(newURL);
+});
