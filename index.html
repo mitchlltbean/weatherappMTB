@@ -1,106 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WeatherApp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
-</head>
-<h1>Weather Dashboard</h1>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <h1>Weather Dashboard</h1>
+  <body>
     <!-- create fluid container -->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-3 d-flex align-items-stretch">
-                <form roles="form">
-                    <div class="form-group">
-                        <label for="search" class="form-group">Serach City:</label>
-                        <input type="text" class="form-group" id="searchplz">
-                        <button type="submit" class="btn btn-default" id="searchBtn">Submit</button>
-                    </div>
-                </form>
-            </div>  
-            <!-- coulm with nested rows -->
-            <div class="col-9 d-flex align-items-stretch">
-                <div class="contianer-fluid">
-                    <div class="row">
-                        <div class="card" style="width: 75rem;">
-                            <div class="card-main">
-                                <h5 class="card-title">city(date)(img tag for icon)<img src></h5>
-                     
-                                <p class="card-temperature">temp</p>
-                     
-                                <p class="card-humid">humid</p>
-                    
-                                <p class="card-wind">wind</p>
-                     
-                                <p class="card-uv">unv index</p> 
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- main data card row -->
-                    <div class="row">
-                        <h5 class="fiveday">5-day Forecast</h5>
-                    </div>
-                    <!-- 5 day row -->
-                    <div class="row">    
-                        <card style="width: 10rem;" class="cardone">
-                        
-                        <p class="cardone-date">date</p>
-                     
-                        <p class="cardone-humid">img of predicted weather</p>
-                
-                        <p class="cardone-wind">wind</p>
-                 
-                        <p class="cardone-uv">unv index</p> 
-                        </card>
-                        
-                    </div>  
-                </div>
+      <div class="row">
+        <div class="col-3 d-flex align-items-stretch">
+          <form roles="form">
+            <div class="form-group">
+              <label for="search" class="form-group">Serach City:</label>
+              <input type="text" class="form-group" id="searchplz" />
+              <button type="submit" class="btn btn-default" id="searchBtn">
+                Submit
+              </button>
             </div>
+          </form>
         </div>
+        <!-- coulm with nested rows -->
+        <div class="col-9 d-flex align-items-stretch">
+          <div class="contianer-fluid">
+            <div class="row">
+              <div class="card" style="width: 75rem">
+                <div class="card-main">
+                  <h5 class="card-title">
+                    <span id="headw">city(date)(img tag for icon)</span>
+                  </h5>
+
+                  <p class="card-temperature">temp</p>
+
+                  <p class="card-humid">humid</p>
+
+                  <p class="card-wind">wind</p>
+
+                  <p class="card-uv">unv index</p>
+                </div>
+              </div>
+            </div>
+            <!-- main data card row -->
+            <div class="row">
+              <h5 class="fiveday">5-day Forecast</h5>
+            </div>
+            <!-- 5 day row -->
+            <div class="row">
+              <card style="width: 10rem" class="cardone">
+                <p class="cardone-date">date</p>
+
+                <p class="cardone-humid">img of predicted weather</p>
+
+                <p class="cardone-wind">wind</p>
+
+                <p class="cardone-uv">unv index</p>
+              </card>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <script src="javascript.js"></script>
 
-</body>
+    <script src="javascript.js"></script>
+  </body>
 </html>

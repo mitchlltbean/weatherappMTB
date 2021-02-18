@@ -21,6 +21,14 @@ function runQuery(newURL) {
     //TODO: take first api call get and destruct object for appending most data
     console.log(data.name);
     console.log(data.coord);
+    var citytag = data.name;
+    $("#headw").append(citytag);
+    var wrongtime = data.dt;
+    var rightTime = new Date(wrongtime * 1000);
+    $("#headw").append(rightTime);
+    var wtag = data.weather[0].icon;
+    $("#headw").append(wtag);
+
     coord = data.coord;
     sunAjaxtwo(coord);
   });
@@ -35,7 +43,7 @@ function runQuery(newURL) {
         "&exclude=minutely,hourly&appid=6398149920a7a183b9bab744a5b278b5",
       method: "GET",
     }).then(function (finalData) {
-      //TODO: get second sata information from one call api and use daily forecast and date for 5 day
+      //TODO: get second sata information from one call api and use daily forecast and date for 5 day and uv index.
 
       console.log(finalData);
 
@@ -48,7 +56,7 @@ function runQuery(newURL) {
 
 $("#searchBtn").on("click", function (event) {
   event.preventDefault();
-
+  $("#headw").empty();
   queryTerm = $("#searchplz").val();
 
   console.log(queryTerm);
