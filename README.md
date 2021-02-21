@@ -20,7 +20,7 @@ Video link to how app works: https://drive.google.com/file/d/19TJa04PG_Vv3ARaFK0
 
 # Description
 
-This project is designed to have the ability to search an employee among many employees based on there information.
+This project is designed to have the ability to search for weather information on a particular city.
 
 # Install
 
