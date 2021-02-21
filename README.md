@@ -30,7 +30,7 @@ none
 
 A step by step video is provided above below title
 
-You can seach employees by their first name, last name, or email. You can also use the sort button to sort employees by last name alphabetically.
+You can seach cities for their weather information. You can also use the five day forecast displayed below after search.
 
 # Contributions
 
