@@ -11,8 +11,10 @@ var queryURL =
   "&units=imperial";
 //TODO: create functions
 var data = "";
-//TODO: get first search data from api rolling 2 call to one api
-
+var pastSearches = [];
+function saveSearch() {
+  window.localStorage["searchplz"] = document.getElementById("searchplz").value;
+}
 //TODO:create click event for search
 $("#searchBtn").on("click", function (event) {
   event.preventDefault();
@@ -246,39 +248,3 @@ function runQuery(newURL) {
     });
   }
 }
-
-var savedKanjiArr = JSON.parse(localStorage.getItem("saved-kanji")) || [];
-
-function saveKanji(savedKanji) {
-  //if the search is not already in the saved kanji array...
-
-  //display the kanji into the #search-history box
-  var buttonSave = $("<button>");
-  buttonSave.text(savedKanji.specificKanji);
-  buttonSave.addClass("saved-search-button");
-  buttonSave.attr("data-meaning", savedKanji.kanjiMeaning);
-  var dataSpan = $("<span>");
-  dataSpan.text(savedKanji.kanjiMeaning);
-  dataSpan.addClass("tooltip-text");
-  buttonSave.append(dataSpan);
-  $("#search-history").prepend(buttonSave);
-
-  //add saved kanji searches into local storage
-  localStorage.setItem("saved-kanji", JSON.stringify(savedKanjiArr));
-}
-
-//saved kanji search functionality/event listener
-$("#search-history").on("click", "button", function () {
-  // var whichKanji = $(this).text();
-  var kanjiMeaning = $(this).data().meaning;
-
-  // do not execute a search if the clear-button is clicked
-  if (typeof kanjiMeaning === "undefined") {
-    return;
-  }
-
-  $("#media-base").empty();
-  $("#media-base-two").empty();
-  //send which Kanji was clicked to the fetchApiData function,9/
-  fetchApiData(kanjiMeaning);
-});
