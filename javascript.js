@@ -13,41 +13,77 @@ var queryURL =
 var data = "";
 //TODO: get first search data from api rolling 2 call to one api
 
+//TODO:create click event for search
+$("#searchBtn").on("click", function (event) {
+  event.preventDefault();
+  $("#headw").empty();
+  $("#temp").empty();
+  $(".car").empty();
+  $("#humid").empty();
+  $("#wind").empty();
+  $("#uvIndex").empty();
+
+  queryTerm = $("#searchplz").val();
+
+  console.log(queryTerm);
+
+  var newURL = queryURL + "&q=" + queryTerm;
+
+  console.log(newURL);
+
+  runQuery(newURL);
+});
+
 function runQuery(newURL) {
   $.ajax({
     url: newURL,
     method: "GET",
   }).then(function (data) {
-    console.log(data);
+    console.log(data, "!!!!!!!!!!!");
     //TODO: take first api call get and destruct object for appending most data
-    console.log(data.name);
-    console.log(data.coord);
+
     var citytag = data.name;
     $("#headw").append(citytag + " ");
 
     //get date
+    var newDate = $("<span>");
     var wrongtime = data.dt;
     var rightTime = new Date(wrongtime * 1000);
     dateString = rightTime.toString().split(" ").slice(0, 4).join(" ");
-    console.log(dateString);
-    $("#headw").append(dateString);
-    var wtag = data.weather[0].icon;
+
+    newDate.text(dateString);
+    $("#headw").append(newDate);
 
     //icon
+    var newIcon = $("<img>");
+    var wtag = data.weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+    newIcon.attr("src", iconurl);
     $("#wicon").attr("src", iconurl);
 
     //temp
-    var temp = data.main.temp;
-    $("#temp").append("Temperature: " + temp + String.fromCharCode(176) + "F");
+    var newTemp = $("<span>");
+    var temp = JSON.stringify(data.main.temp);
+
+    newTemp.text(temp);
+    $("#temp").append(
+      "Temperature: " +
+        data.main.temp.toString() +
+        String.fromCharCode(176) +
+        "F"
+    );
 
     //humid
-    var humid = data.main.temp;
-    $("#humid").append("Humidity: " + humid + "%");
+    var newHumid = $("<span>");
+    var humid = data.main.humidity;
+    newHumid.text(humid);
+    $("#humid").append("Humidity: " + data.main.humidity.toString() + "%");
 
     //wind
+    var newWind = $("<span>");
     var wind = data.wind.speed;
-    $("#wind").append("Wind: " + wind);
+    newWind.text(wind);
+    $("#wind").append("Wind: " + data.wind.speed.toString() + " MPH");
 
     //coord for 2nd call
     coord = data.coord;
@@ -61,7 +97,7 @@ function runQuery(newURL) {
         coord.lat +
         "&lon=" +
         coord.lon +
-        "&exclude=minutely,hourly&appid=6398149920a7a183b9bab744a5b278b5",
+        "&exclude=minutely,hourly&appid=6398149920a7a183b9bab744a5b278b5&units=imperial",
       method: "GET",
     }).then(function (finalData) {
       //TODO: get second sata information from one call api and use daily forecast and date for 5 day and uv index.
@@ -69,28 +105,180 @@ function runQuery(newURL) {
       console.log(finalData);
 
       //uv
-      var uvIndex = finalData.current.uvi;
-      $("#uv").append("UV index: " + uvIndex);
 
-      // console.log(finalData.name);
-      // console.log(finalData.weather[0].description);
+      var uvIndex = finalData.current.uvi;
+      $("#uvIndex").append("UV index: " + uvIndex);
+
+      var daily = finalData.daily;
+      console.log(daily);
+
+      //date
+      var wrongtime = daily[1].dt;
+      var rightTime = new Date(wrongtime * 1000);
+
+      $("#dateone").append(
+        rightTime.toString().split(" ").slice(0, 4).join(" ")
+      );
+
+      //temp
+      $("#tempone").append(
+        "Temperature: " +
+          daily[1].temp.day.toString() +
+          String.fromCharCode(176) +
+          "F"
+      );
+      //icon
+      var newIcon = $("<img>");
+      var wtag = daily[1].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+      newIcon.attr("src", iconurl);
+      $("#iconone").attr("src", iconurl).width("50px");
+
+      $("#humidone").append("Humidity: " + daily[1].humidity.toString() + "%");
+      //////////////////////
+      //date
+      var wrongtime = daily[2].dt;
+      var rightTime = new Date(wrongtime * 1000);
+
+      $("#datetwo").append(
+        rightTime.toString().split(" ").slice(0, 4).join(" ")
+      );
+
+      //temp
+      $("#temptwo").append(
+        "Temperature: " +
+          daily[2].temp.day.toString() +
+          String.fromCharCode(176) +
+          "F"
+      );
+      //icon
+
+      var wtag = daily[2].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+
+      $("#icontwo").attr("src", iconurl).width("50px");
+
+      //humidity
+      var humid = daily[2].humidity;
+
+      $("#humidtwo").append("Humidity: " + humid.toString() + "%");
+      ////////////////////////////////
+      //date
+      var wrongtime = daily[3].dt;
+      var rightTime = new Date(wrongtime * 1000);
+
+      $("#datethree").append(
+        rightTime.toString().split(" ").slice(0, 4).join(" ")
+      );
+
+      //temp
+      $("#tempthree").append(
+        "Temperature: " +
+          daily[3].temp.day.toString() +
+          String.fromCharCode(176) +
+          "F"
+      );
+      //icon
+
+      var wtag = daily[3].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+
+      $("#iconthree").attr("src", iconurl).width("50px");
+
+      //humidity
+      var humid = daily[3].humidity;
+
+      $("#humidthree").append("Humidity: " + humid.toString() + "%");
+      ////////////////////////////////
+      //date
+      var wrongtime = daily[4].dt;
+      var rightTime = new Date(wrongtime * 1000);
+
+      $("#datefour").append(
+        rightTime.toString().split(" ").slice(0, 4).join(" ")
+      );
+
+      //temp
+      $("#tempfour").append(
+        "Temperature: " +
+          daily[4].temp.day.toString() +
+          String.fromCharCode(176) +
+          "F"
+      );
+      //icon
+
+      var wtag = daily[4].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+
+      $("#iconfour").attr("src", iconurl).width("50px");
+
+      //humidity
+      var humid = daily[4].humidity;
+
+      $("#humidfour").append("Humidity: " + humid.toString() + "%");
+      ////////////////////////////////
+      //date
+      var wrongtime = daily[5].dt;
+      var rightTime = new Date(wrongtime * 1000);
+
+      $("#datefive").append(
+        rightTime.toString().split(" ").slice(0, 4).join(" ")
+      );
+
+      //temp
+      $("#tempfive").append(
+        "Temperature: " +
+          daily[5].temp.day.toString() +
+          String.fromCharCode(176) +
+          "F"
+      );
+      //icon
+
+      var wtag = daily[5].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + wtag + ".png";
+
+      $("#iconfive").attr("src", iconurl).width("50px");
+
+      //humidity
+      var humid = daily[5].humidity;
+
+      $("#humidfive").append("Humidity: " + humid.toString() + "%");
     });
   }
 }
-//TODO:create click event for search
 
-$("#searchBtn").on("click", function (event) {
-  event.preventDefault();
-  $("#headw").empty();
-  $("#wicon").empty();
+var savedKanjiArr = JSON.parse(localStorage.getItem("saved-kanji")) || [];
 
-  queryTerm = $("#searchplz").val();
+function saveKanji(savedKanji) {
+  //if the search is not already in the saved kanji array...
 
-  console.log(queryTerm);
+  //display the kanji into the #search-history box
+  var buttonSave = $("<button>");
+  buttonSave.text(savedKanji.specificKanji);
+  buttonSave.addClass("saved-search-button");
+  buttonSave.attr("data-meaning", savedKanji.kanjiMeaning);
+  var dataSpan = $("<span>");
+  dataSpan.text(savedKanji.kanjiMeaning);
+  dataSpan.addClass("tooltip-text");
+  buttonSave.append(dataSpan);
+  $("#search-history").prepend(buttonSave);
 
-  var newURL = queryURL + "&q=" + queryTerm;
+  //add saved kanji searches into local storage
+  localStorage.setItem("saved-kanji", JSON.stringify(savedKanjiArr));
+}
 
-  console.log(newURL);
+//saved kanji search functionality/event listener
+$("#search-history").on("click", "button", function () {
+  // var whichKanji = $(this).text();
+  var kanjiMeaning = $(this).data().meaning;
 
-  runQuery(newURL);
+  // do not execute a search if the clear-button is clicked
+  if (typeof kanjiMeaning === "undefined") {
+    return;
+  }
+
+  $("#media-base").empty();
+  $("#media-base-two").empty();
+  //send which Kanji was clicked to the fetchApiData function,9/
+  fetchApiData(kanjiMeaning);
 });

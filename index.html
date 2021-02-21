@@ -25,6 +25,7 @@
               <button type="submit" class="btn btn-default" id="searchBtn">
                 Submit
               </button>
+              <br />
             </div>
           </form>
         </div>
@@ -33,7 +34,7 @@
           <div class="contianer-fluid">
             <div class="row">
               <div class="card" style="width: 75rem">
-                <div class="card-main">
+                <div class="card-main" id="cardmain">
                   <h5 class="card-title">
                     <span id="headw">Please Enter a City</span
                     ><img id="wicon" src="" alt="" aria-placeholder="" />
@@ -45,7 +46,7 @@
 
                   <p class="card-wind" id="wind"></p>
 
-                  <p class="card-uv" id="uv"></p>
+                  <p class="card-uv" id="uvIndex"></p>
                 </div>
               </div>
             </div>
@@ -54,15 +55,55 @@
               <h5 class="fiveday">5-day Forecast</h5>
             </div>
             <!-- 5 day row -->
-            <div class="row">
-              <card style="width: 10rem" class="cardone">
-                <p class="cardone-date">date</p>
+            <div class="row" id="fiveday">
+              <card style="width: 10rem" class="cardf">
+                <p class="car" id="dateone"></p>
 
-                <p class="cardone-humid">img of predicted weather</p>
+                <p class="car" id="tempone"></p>
 
-                <p class="cardone-wind">wind</p>
+                <img class="car" id="iconone" />
 
-                <p class="cardone-uv">unv index</p>
+                <p class="car" id="humidone"></p>
+              </card>
+
+              <card style="width: 10rem" class="cardf">
+                <p class="car" id="datetwo"></p>
+
+                <p class="car" id="temptwo"></p>
+
+                <img class="car" id="icontwo" />
+
+                <p class="car" id="humidtwo"></p>
+              </card>
+
+              <card style="width: 10rem" class="cardf">
+                <p class="car" id="datethree"></p>
+
+                <p class="car" id="tempthree"></p>
+
+                <img class="car" id="iconthree" />
+
+                <p class="car" id="humidthree"></p>
+              </card>
+
+              <card style="width: 10rem" class="cardf">
+                <p class="car" id="datefour"></p>
+
+                <p class="car" id="tempfour"></p>
+
+                <img class="car" id="iconfour" />
+
+                <p class="car" id="humidfour"></p>
+              </card>
+
+              <card style="width: 10rem" class="cardf">
+                <p class="car" id="datefive"></p>
+
+                <p class="car" id="tempfive"></p>
+
+                <img class="car" id="iconfive" />
+
+                <p class="car" id="humidfive"></p>
               </card>
             </div>
           </div>

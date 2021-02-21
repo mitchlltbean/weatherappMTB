@@ -1,0 +1,15 @@
+.card-main {
+  background-color: blanchedalmond;
+  color: black;
+}
+
+.cardf {
+  background-color: blue;
+  color: white;
+  margin-left: 20px;
+}
+
+#fiveday {
+  display: flex;
+  align-content: space-between;
+}
